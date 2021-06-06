@@ -31,6 +31,10 @@ const routes = [
     name: 'KeyDetail',
     component: keyDetail,
     props: true
+  },
+  {
+    path: '/',
+    redirect: '/home'
   }
 ]
 
