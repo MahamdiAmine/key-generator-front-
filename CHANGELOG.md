@@ -1,3 +1,7 @@
+## [2.0.0] - 2021-06-06
+### Added
+- Sort the keys by the creation date
+
 ## [1.0.1] - 2021-06-06
 ### Added
 - Update the README
