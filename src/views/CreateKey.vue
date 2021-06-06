@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -39,6 +39,7 @@ export default {
   setup () {
     const isLoggedIn = ref(localStorage.getItem('isLoggedIn'))
     const router = useRouter()
+    const swal = inject('$swal')
     const key = ref(null)
     const name = ref(null)
     const lifeDuration = ref(365)
@@ -59,9 +60,13 @@ export default {
         const url = 'https://keygenerator.herokuapp.com/api/key/'
         const data = await fetch(url, requestOptions)
         if (data.ok) {
-          console.log('ok')
+          await swal.fire('Key Added successfully', 'Done!', 'success')
         } else {
-          console.log('not ok')
+          await swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+          })
         }
         await router.push({ name: 'Dashboard' })
       } catch (e) {

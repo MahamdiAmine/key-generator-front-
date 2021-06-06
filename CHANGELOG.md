@@ -1,3 +1,7 @@
+## [3.0.0] - 2021-06-06
+### Added
+- Add UI notifications
+
 ## [2.0.0] - 2021-06-06
 ### Added
 - Sort the keys by the creation date

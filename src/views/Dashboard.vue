@@ -30,15 +30,16 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import getKeys from '../composables/getKeys'
-import KeyList from '../views/KeyList'
+import { inject, onUpdated, ref } from 'vue'
+import getKeys from '@/composables/getKeys'
+import KeyList from '@/views/KeyList'
 
 export default {
   name: 'Dashboard',
   components: { KeyList },
   setup () {
     const loggedIn = ref(localStorage.getItem('isLoggedIn'))
+    const swal = inject('$swal')
     const token = ref(null)
     const username = ref(null)
     const password = ref(null)
@@ -48,6 +49,13 @@ export default {
       // remove the credentials and connexion infos
       localStorage.removeItem('isLoggedIn')
       localStorage.removeItem('token')
+
+      // fire success message
+      swal.fire({
+        icon: 'success',
+        title: 'See ya!',
+        showConfirmButton: false
+      })
       location.reload()
     }
 
@@ -66,7 +74,13 @@ export default {
         const url = 'https://keygenerator.herokuapp.com/api/get-token/'
         const data = await fetch(url, requestOptions)
         if (data.ok) {
-          console.log('ok')
+          await swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'You logged in successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
           const response = await data.json()
 
           // set the cnx infos
@@ -81,7 +95,7 @@ export default {
           loggedIn.value = '1'
         } else {
           // authentication failed
-          console.log('not ok')
+          await swal.fire('Try Again', 'Verify your credentials', 'question')
         }
       } catch (e) {
         console.log(e)
@@ -89,8 +103,10 @@ export default {
     }
     const { keys, err, loadData } = getKeys()
 
-    // load the data
     loadData()
+    onUpdated(() => {
+      loadData()
+    })
 
     return { login, logout, loggedIn, username, password, keys, err, token }
   }

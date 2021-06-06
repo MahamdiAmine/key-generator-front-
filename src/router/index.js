@@ -1,9 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import home from '@/views/Home.vue'
 import dashboard from '@/views/Dashboard.vue'
 import createKey from '@/views/CreateKey.vue'
+import about from '@/views/About.vue'
 import keyDetail from '@/views/KeyDetail.vue'
 
 const routes = [
+  {
+    path: '/home',
+    name: 'Home',
+    component: home
+  },
   {
     path: '/dashboard',
     name: 'Dashboard',
@@ -13,6 +20,11 @@ const routes = [
     path: '/create-key',
     name: 'CreateKey',
     component: createKey
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: about
   },
   {
     path: '/key/:id',

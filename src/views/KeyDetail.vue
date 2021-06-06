@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -34,6 +34,7 @@ export default {
   setup (props) {
     const router = useRouter()
     const isLoggedIn = ref(localStorage.getItem('isLoggedIn'))
+    const swal = inject('$swal')
     const k = ref(null)
 
     // get the key
@@ -49,7 +50,6 @@ export default {
         const data = await fetch(url, requestOptions)
         if (data.ok) {
           k.value = await data.json()
-          console.log('ok')
         }
       } catch (e) {
         console.log(e)
@@ -68,9 +68,13 @@ export default {
         const url = 'https://keygenerator.herokuapp.com/api/key/' + props.id + '/'
         const data = await fetch(url, requestOptions)
         if (data.ok) {
-          console.log('ok')
+          await swal.fire('Key Deleted successfully', 'Done!', 'success')
         } else {
-          console.log('not ok')
+          await swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+          })
         }
         await router.push({ name: 'Dashboard' })
       } catch (e) {

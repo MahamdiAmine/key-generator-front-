@@ -18,6 +18,7 @@ export default {
   setup (props) {
     const Keys = ref(props.keys)
     const sortKeys = () => {
+      console.log(Keys.value)
       const comp = (a, b) => {
         return new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime()
       }
