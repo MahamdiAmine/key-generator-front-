@@ -1,11 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import dashboard from '@/views/Dashboard.vue'
+import createKey from '@/views/CreateKey.vue'
+import keyDetail from '@/views/KeyDetail.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: dashboard
+  },
+  {
+    path: '/create-key',
+    name: 'CreateKey',
+    component: createKey
+  },
+  {
+    path: '/key/:id',
+    name: 'KeyDetail',
+    component: keyDetail,
+    props: true
   }
 ]
 

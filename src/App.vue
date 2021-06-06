@@ -1,6 +1,8 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
+    <router-link to="/dashboard">Dashboard</router-link>
+    |
+    <router-link to="/create-key">Create New Key</router-link>
   </div>
   <router-view/>
 </template>
