@@ -1,3 +1,7 @@
+## [1.0.1] - 2021-06-06
+### Added
+- Update the README
+
 ## [1.0.0] - 2021-06-06
 ### Added
 - keyDetail
