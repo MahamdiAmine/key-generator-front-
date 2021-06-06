@@ -52,7 +52,7 @@ $ npm run serve
 
 ## Deployment
 
-This project is deployed to [Github Pages](https://MahamdiAmone.keygen/)
+This project is deployed to [Github Pages](https://mahamdiamine.github.io/test-deploy-vue/)
 
 ## Versioning
 

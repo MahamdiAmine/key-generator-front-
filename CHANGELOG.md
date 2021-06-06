@@ -1,3 +1,7 @@
+## [3.0.1] - 2021-06-06
+### Added
+- Deployment to Github
+
 ## [3.0.0] - 2021-06-06
 ### Added
 - Add UI notifications
